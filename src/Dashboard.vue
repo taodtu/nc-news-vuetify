@@ -1,5 +1,14 @@
 <template>
-  <div>in dashboard</div>
+  <v-app>
+      <v-navigation-drawer>
+          nav
+      </v-navigation-drawer>
+      <v-toolbar>
+
+      </v-toolbar>
+      
+
+  </v-app>
 </template>
 
 <script>
