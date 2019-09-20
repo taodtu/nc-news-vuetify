@@ -6,10 +6,8 @@ import Vuetify, {
   VList,
   VBtn,
   VIcon,
-  VGrid,
   VToolbar,
   VTextField,
-  transitions,
   VTabs
 } from "vuetify/lib";
 
@@ -21,15 +19,25 @@ Vue.use(Vuetify, {
     VList,
     VBtn,
     VIcon,
-    VGrid,
     VToolbar,
     VTextField,
-    transitions,
     VTabs
   },
   iconFont: "fa"
 });
 
-const opts = {};
-
-export default new Vuetify(opts);
+export default new Vuetify({
+  theme: {
+    themes: {
+      light: {
+        primary: "#25395b",
+        secondary: "#304b78",
+        accent: "#e6b400",
+        error: "#F44336",
+        warning: "#ffeb3b",
+        info: "#edf1f8",
+        success: "#4caf50"
+      }
+    }
+  }
+});
