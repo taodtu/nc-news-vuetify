@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import ErrorMsg from '../components/ErrorMsg.vue';
-import Dashboard from '../Dashboard.vue'
+import Dashboard from '../components/dashboard/Dashboard.vue'
 
 Vue.use(VueRouter);
 
