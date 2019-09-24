@@ -13,8 +13,8 @@
   >
     <v-layout column fill-height>
       <v-list class="transparent pr-0 px-0">
-        <v-list-item name="show-hide">
-          <v-switch class="mt-0 mb-0" v-model="miniVariant" color="yellow lighten-4" />
+        <v-list-item name="show-hide" class="my-0 py-0">
+          <v-switch class="my-0 py-0" v-model="miniVariant" color="yellow lighten-4" />
         </v-list-item>
 
         <v-list-item
