@@ -1,5 +1,5 @@
 <template>
-  <div class="px-2">
+  <div >
     <v-toolbar color="white" class="grey--text text--darken-4" flat>
       <v-toolbar-title
         class="toolbarTitle font-weight-light display-1 pl-3 mt-3"

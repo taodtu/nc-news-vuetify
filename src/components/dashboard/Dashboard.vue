@@ -4,7 +4,7 @@
     <Navigation />
     <v-content>
       <keep-alive>
-        <component :is="currentComponentRendered" />
+        <component :is="currentComponentRendered" class="px-2" />
       </keep-alive>
     </v-content>
   </div>
