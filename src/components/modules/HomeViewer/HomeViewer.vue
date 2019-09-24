@@ -21,7 +21,7 @@
             {{showTopic? "Hide the topics":"Click to get topics"}}
           </v-btn>
           <p v-if="showTopic" class="ma-2">
-            <v-chip>Click the topics on the left to browse</v-chip>
+            <v-chip class="success lighten-1">Click the topics on the left to browse</v-chip>
           </p>
         </v-flex>
       </v-layout>
@@ -42,8 +42,7 @@ export default {
     ...mapGetters(["showTopic"])
   },
   created() {
-    this.$store.dispatch("getTopics")
-    .catch(error=>error);
+    this.$store.dispatch("getTopics").catch(error => error);
   }
 };
 </script>

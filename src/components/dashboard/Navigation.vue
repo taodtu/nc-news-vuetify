@@ -24,23 +24,28 @@
           :style="['HomeViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
           @click="setCurrentComponent(HomeViewer)"
         >
-          <v-list-item-action class="align-center">
-            <v-icon
-              style="font-size:18px"
-              class="text-xs-center icon ml-3"
-              :style="['HomeViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-              color="grey lighten-5"
-              v-html="'fas fa-home'"
-            />
-          </v-list-item-action>
-
-          <v-list-item-content class="mx-0">
-            <v-list-item-title
-              :style="['HomeViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-              class="white--text text--lighten-5 body-2"
-              v-text="'Dashboard'"
-            />
-          </v-list-item-content>
+          <v-row no-gutters align="center" align-content="start">
+            <v-col cols="2">
+              <v-list-item-action class="align-center">
+                <v-icon
+                  style="font-size:18px"
+                  class="text-xs-center icon ml-3"
+                  :style="['HomeViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                  color="grey lighten-5"
+                  v-html="'fas fa-home'"
+                />
+              </v-list-item-action>
+            </v-col>
+            <v-col cols="10">
+              <v-list-item-content class="ml-4">
+                <v-list-item-title
+                  :style="['HomeViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                  class="white--text text--lighten-5 body-2"
+                  v-text="'Dashboard'"
+                />
+              </v-list-item-content>
+            </v-col>
+          </v-row>
         </v-list-item>
 
         <v-list-item
@@ -50,38 +55,50 @@
           :style="['UserViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
           @click="importComponent('User')"
         >
-          <v-list-item-action class="align-center">
-            <v-icon
-              style="font-size:18px"
-              class="text-xs-center icon ml-3"
-              :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-              color="grey lighten-5"
-              v-html="'fas fa-user'"
-            />
-          </v-list-item-action>
-          <v-list-item-content class="mx-0">
-            <v-list-item-title
-              :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-              class="white--text text--lighten-5 body-2"
-              v-text="'User'"
-            />
-          </v-list-item-content>
+          <v-row no-gutters align="center" align-content="start">
+            <v-col cols="2">
+              <v-list-item-action class="align-center">
+                <v-icon
+                  style="font-size:18px"
+                  class="text-xs-center icon ml-3"
+                  :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                  color="grey lighten-5"
+                  v-html="'fas fa-user'"
+                />
+              </v-list-item-action>
+            </v-col>
+            <v-col cols="10">
+              <v-list-item-content class="ml-4">
+                <v-list-item-title
+                  :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                  class="white--text text--lighten-5 body-2"
+                  v-text="'User'"
+                />
+              </v-list-item-content>
+            </v-col>
+          </v-row>
         </v-list-item>
 
         <v-divider v-if="showTopic"></v-divider>
 
         <v-list-item v-if="showTopic" class="text-xs-middle mx-0 px-0" dark>
-          <v-list-item-action class="align-center">
-            <v-icon
-              style="font-size:18px"
-              class="text-xs-center icon ml-3"
-              color="grey lighten-5"
-              v-html="'fas fa-angle-double-down'"
-            />
-          </v-list-item-action>
-          <v-list-item-content class="mx-0">
-            <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Topics'" />
-          </v-list-item-content>
+          <v-row no-gutters align="center" align-content="start">
+            <v-col cols="2">
+              <v-list-item-action class="align-center">
+                <v-icon
+                  style="font-size:18px"
+                  class="text-xs-center icon ml-3"
+                  color="grey lighten-5"
+                  v-html="'fas fa-angle-double-down'"
+                />
+              </v-list-item-action>
+            </v-col>
+            <v-col cols="10">
+              <v-list-item-content class="ml-4">
+                <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Topics'" />
+              </v-list-item-content>
+            </v-col>
+          </v-row>
         </v-list-item>
 
         <div v-if="showTopic">
@@ -91,25 +108,31 @@
             class="text-xs-middle mx-0 px-0"
             dark
             value="true"
-            :style="['UserViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
-            @click="importComponent('User')"
+            :style="[`${topic.slug}Viewer` === currentModuleName ? {'background': '#e6b400'} : {}]"
+            @click="importComponent(topic.slug)"
           >
-            <v-list-item-action class="align-center">
-              <v-icon
-                style="font-size:18px"
-                class="text-xs-center icon ml-3"
-                :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-                color="grey lighten-5"
-                v-html="topic.icon"
-              />
-            </v-list-item-action>
-            <v-list-item-content class="mx-0">
-              <v-list-item-title
-                :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-                class="white--text text--lighten-5 body-2"
-                v-text="topic.slug"
-              />
-            </v-list-item-content>
+            <v-row no-gutters align="center" align-content="start">
+              <v-col cols="2">
+                <v-list-item-action class="align-center">
+                  <v-icon
+                    style="font-size:18px"
+                    class="text-xs-center icon ml-3"
+                    :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                    color="grey lighten-5"
+                    v-html="topic.icon"
+                  />
+                </v-list-item-action>
+              </v-col>
+              <v-col cols="10">
+                <v-list-item-content class="mx-4">
+                  <v-list-item-title
+                    :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                    class="white--text text--lighten-5 body-2"
+                    v-text="topic.slug"
+                  />
+                </v-list-item-content>
+              </v-col>
+            </v-row>
           </v-list-item>
         </div>
       </v-list>
