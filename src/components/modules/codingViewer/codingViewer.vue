@@ -6,9 +6,21 @@
       >Articles about coding</v-toolbar-title>
     </v-toolbar>
     <v-container>
-      <v-layout row wrap>
+      <v-layout row>
         <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
-          <p>{{article.title}}</p>
+          <v-card flat class="text-xs ma-3">
+            <v-card-title class="title secondary--text">{{article.title}}</v-card-title>
+            <v-card-text class="pa-0 ml-4">
+              <div class="subheading">
+                <span>Author: {{ article.author }}</span>
+                <span class="ml-3">Votes: {{ article.votes }}</span>
+                <span class="ml-3">Date: {{ article.created_at.split("T")[0]}}</span>
+              </div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn class="ml-2" small @click="toArticle(article.article_id)">Detail Page</v-btn>
+            </v-card-actions>
+          </v-card>
         </v-flex>
       </v-layout>
     </v-container>
@@ -27,6 +39,11 @@ export default {
   },
   computed: {
     ...mapGetters(["articles"])
+  },
+  methods: {
+    toArticle(id) {
+      console.log(id);
+    }
   }
 };
 </script>
