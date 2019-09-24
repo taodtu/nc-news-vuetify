@@ -83,6 +83,35 @@
             <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Topics'" />
           </v-list-item-content>
         </v-list-item>
+
+        <div v-if="showTopic">
+          <v-list-item
+            v-for="topic in topics"
+            :key="topic.slug"
+            class="text-xs-middle mx-0 px-0"
+            dark
+            value="true"
+            :style="['UserViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
+            @click="importComponent('User')"
+          >
+            <v-list-item-action class="align-center">
+              <v-icon
+                style="font-size:18px"
+                class="text-xs-center icon ml-3"
+                :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                color="grey lighten-5"
+                v-html="topic.icon"
+              />
+            </v-list-item-action>
+            <v-list-item-content class="mx-0">
+              <v-list-item-title
+                :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
+                class="white--text text--lighten-5 body-2"
+                v-text="topic.slug"
+              />
+            </v-list-item-content>
+          </v-list-item>
+        </div>
       </v-list>
     </v-layout>
   </v-navigation-drawer>
@@ -101,7 +130,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["currentComponentRendered", "showTopic"]),
+    ...mapGetters(["currentComponentRendered", "showTopic", "topics"]),
     currentModuleName() {
       return this.currentComponentRendered.name;
     }

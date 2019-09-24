@@ -40,6 +40,10 @@ export default {
   },
   computed: {
     ...mapGetters(["showTopic"])
+  },
+  created() {
+    this.$store.dispatch("getTopics")
+    .catch(error=>error);
   }
 };
 </script>
