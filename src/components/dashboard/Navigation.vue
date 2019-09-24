@@ -38,32 +38,7 @@
             <v-list-item-title
               :style="['HomeViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
               class="white--text text--lighten-5 body-2"
-              v-text="'Home'"
-            />
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item
-          class="text-xs-middle mx-0 px-0"
-          dark
-          value="true"
-          :style="['TopicViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
-          @click="importComponent('Topic')"
-        >
-          <v-list-item-action class="align-center">
-            <v-icon
-              style="font-size:18px"
-              class="text-xs-center icon ml-3"
-              :style="['TopicViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-              color="grey lighten-5"
-              v-html="'fas fa-headphones'"
-            />
-          </v-list-item-action>
-          <v-list-item-content class="mx-0">
-            <v-list-item-title
-              :style="['TopicViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
-              class="white--text text--lighten-5 body-2"
-              v-text="'Topics'"
+              v-text="'Dashboard'"
             />
           </v-list-item-content>
         </v-list-item>
@@ -92,6 +67,22 @@
             />
           </v-list-item-content>
         </v-list-item>
+
+        <v-divider v-if="showTopic"></v-divider>
+
+        <v-list-item v-if="showTopic" class="text-xs-middle mx-0 px-0" dark>
+          <v-list-item-action class="align-center">
+            <v-icon
+              style="font-size:18px"
+              class="text-xs-center icon ml-3"
+              color="grey lighten-5"
+              v-html="'fas fa-angle-double-down'"
+            />
+          </v-list-item-action>
+          <v-list-item-content class="mx-0">
+            <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Topics'" />
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-layout>
   </v-navigation-drawer>
@@ -110,7 +101,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["currentComponentRendered"]),
+    ...mapGetters(["currentComponentRendered", "showTopic"]),
     currentModuleName() {
       return this.currentComponentRendered.name;
     }
