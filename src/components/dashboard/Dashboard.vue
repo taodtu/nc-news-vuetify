@@ -3,7 +3,16 @@
     <Header :title="title" />
     <Navigation />
     <v-content>
-      <component :is="currentComponentRendered" class="px-2" />
+      <keep-alive>
+        <component
+          :is="currentComponentRendered"
+          v-if="currentComponentRendered.name==='UserViewer'"
+        />
+      </keep-alive>
+      <component
+        :is="currentComponentRendered"
+        v-if="currentComponentRendered.name!=='UserViewer'"
+      />
     </v-content>
   </div>
 </template>
