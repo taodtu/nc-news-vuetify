@@ -22,7 +22,7 @@
           dark
           value="true"
           :style="['HomeViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
-          @click="setCurrentComponent(HomeViewer)"
+          @click="setCurrentComponent('Home')"
         >
           <v-row no-gutters align="center" align-content="start">
             <v-col cols="2">
@@ -141,15 +141,13 @@
 </template>
 
 <script>
-import HomeViewer from "../modules/HomeViewer/HomeViewer";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Navigation",
   data() {
     return {
-      miniVariant: false,
-      HomeViewer
+      miniVariant: false
     };
   },
   computed: {
@@ -159,13 +157,8 @@ export default {
     }
   },
   methods: {
-    setCurrentComponent(payload) {
-      this.$store.dispatch("getCurrentComponent", payload);
-    },
     importComponent(name) {
-      import(`../modules/${name}Viewer/${name}Viewer.vue`).then(component => {
-        this.setCurrentComponent(component.default);
-      });
+      this.$store.dispatch("importComponent", name);
     }
   }
 };

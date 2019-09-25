@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import articles from "./articles/index";
 import { getTopics } from "../components/api";
 
 Vue.use(Vuex);
@@ -27,6 +28,11 @@ const actions = {
   getCurrentComponent({ commit }, payload) {
     commit("SET_CURRENT_COMPONENT", payload);
   },
+  importComponent({commit}, payload){
+      import(
+        `../components/modules/${payload}Viewer/${payload}Viewer.vue`
+      ).then(component => commit("SET_CURRENT_COMPONENT", component.default));
+  },
   setTopic({ commit }, payload) {
     commit("SET_TOPIC", payload);
   },
@@ -51,6 +57,9 @@ const getters = {
 };
 
 export default new Vuex.Store({
+  modules: {
+    articles
+  },
   state,
   mutations,
   actions,
