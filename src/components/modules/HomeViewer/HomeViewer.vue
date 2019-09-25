@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <v-toolbar color="white" class="grey--text text--darken-4" flat>
       <v-toolbar-title
         class="toolbarTitle font-weight-light display-1 pl-3 mt-3"
@@ -16,12 +16,8 @@
           a comment) which they have added.
         </p>
         <v-flex wrap class="justify-space-between">
-          <v-btn class="ml-3" color="pink" dark @click="setTopic">
-            <v-icon left>fas fa-external-link-alt</v-icon>
-            {{showTopic? "Hide the topics":"Click to get topics"}}
-          </v-btn>
           <p v-if="showTopic" class="ma-2">
-            <v-chip class="success lighten-1">Click the topics on the left to browse</v-chip>
+            <v-chip class="success lighten-1">Click the topics or user on the left to browse</v-chip>
           </p>
         </v-flex>
       </v-layout>
@@ -33,11 +29,6 @@
 import { mapGetters } from "vuex";
 export default {
   name: "HomeViewer",
-  methods: {
-    setTopic() {
-      this.$store.dispatch("setTopic", !this.showTopic);
-    }
-  },
   computed: {
     ...mapGetters(["showTopic"])
   },

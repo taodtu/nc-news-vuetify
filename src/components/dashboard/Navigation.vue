@@ -22,7 +22,7 @@
           dark
           value="true"
           :style="['HomeViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
-          @click="setCurrentComponent('Home')"
+          @click="importComponent('Home')"
         >
           <v-row no-gutters align="center" align-content="start">
             <v-col cols="2">
@@ -79,9 +79,13 @@
           </v-row>
         </v-list-item>
 
-        <v-divider v-if="showTopic"></v-divider>
-
-        <v-list-item v-if="showTopic" class="text-xs-middle mx-0 px-0" dark>
+        <v-list-item
+          class="text-xs-middle mx-0 px-0"
+          dark
+          value="true"
+          :style="['TopicViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
+          @click="importComponent('Topic'), setTopic()"
+        >
           <v-row no-gutters align="center" align-content="start">
             <v-col cols="2">
               <v-list-item-action class="align-center">
@@ -89,8 +93,9 @@
                   style="font-size:18px"
                   class="text-xs-center icon ml-3"
                   color="grey lighten-5"
-                  v-html="'fas fa-angle-double-down'"
-                />
+                >
+                {{showTopic ?'fas fa-angle-double-down':'fas fa-angle-double-right'}}
+                </v-icon>
               </v-list-item-action>
             </v-col>
             <v-col cols="10">
@@ -159,6 +164,9 @@ export default {
   methods: {
     importComponent(name) {
       this.$store.dispatch("importComponent", name);
+    },
+    setTopic() {
+      this.$store.dispatch("setTopic", !this.showTopic);
     }
   }
 };
