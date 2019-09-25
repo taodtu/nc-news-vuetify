@@ -1,7 +1,17 @@
 <template>
   <div>
-    <v-container no-gutters>
-      <v-layout row>
+    <div class="d-flex justify-start ml-3">
+      <v-select
+        class="ml-4 mt-4 mb-0 pb-0 dense select"
+        hide-details
+        label="Sort By"
+        v-model="ARTICLE_SORT_CHART[sort_by]"
+        @change="handleEvent( {value:ARTICLE_SORT_CHART[sort_by], name:'sort_by'})"
+        :items="sortOptions"
+      />
+    </div>
+    <v-container no-gutters class="mt-0 pt-0">
+      <v-layout row class="mt-0 pt-0">
         <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
           <ArticleItem
             :article="article"
@@ -11,7 +21,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <div class="d-flex justify-center">
+    <div class="d-flex justify-center mt-2">
       <Page :pageTotal="pageTotal" :p="p" @pageClicked="handleEvent" class="mx-3" />
       <v-select
         class="ml-2 mt-0 pt-0 select"
@@ -34,6 +44,7 @@ export default {
   name: "codingViewer",
   data() {
     return {
+      sortOptions: ["date", "votes", "author", "comments"],
       loading: false,
       error: "",
       limit: 6,

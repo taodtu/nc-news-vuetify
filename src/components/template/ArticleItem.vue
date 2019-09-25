@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card flat class="text-xs ma-3">
+    <v-card flat class="text-xs mx-3 my-1">
       <v-card-title class="title secondary--text" style="word-break: keep-all">{{article.title}}</v-card-title>
       <v-card-text class="pa-0 ml-4">
         <div class="subheading pb-2">
