@@ -3,9 +3,7 @@
     <Header :title="title" />
     <Navigation />
     <v-content>
-      <keep-alive>
-        <component :is="currentComponentRendered" class="px-2" />
-      </keep-alive>
+      <component :is="currentComponentRendered" class="px-2" />
     </v-content>
   </div>
 </template>

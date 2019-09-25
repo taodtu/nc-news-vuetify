@@ -8,7 +8,7 @@
     floating
     fixed
     clipped
-    width="180"
+    width="160"
     dark
   >
     <v-layout column fill-height>
@@ -25,7 +25,7 @@
           @click="importComponent('Home'), hideTopics()"
         >
           <v-row no-gutters align="center" align-content="start">
-            <v-col cols="2">
+            <v-col cols="3">
               <v-list-item-action class="align-center">
                 <v-icon
                   style="font-size:18px"
@@ -36,7 +36,7 @@
                 />
               </v-list-item-action>
             </v-col>
-            <v-col cols="10">
+            <v-col cols="9">
               <v-list-item-content class="ml-4">
                 <v-list-item-title
                   :style="['HomeViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
@@ -56,7 +56,7 @@
           @click="importComponent('User'), hideTopics()"
         >
           <v-row no-gutters align="center" align-content="start">
-            <v-col cols="2">
+            <v-col cols="3">
               <v-list-item-action class="align-center">
                 <v-icon
                   style="font-size:18px"
@@ -67,7 +67,7 @@
                 />
               </v-list-item-action>
             </v-col>
-            <v-col cols="10">
+            <v-col cols="9">
               <v-list-item-content class="ml-4">
                 <v-list-item-title
                   :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
@@ -87,7 +87,7 @@
           @click="importComponent('Topic'), setTopic()"
         >
           <v-row no-gutters align="center" align-content="start">
-            <v-col cols="2">
+            <v-col cols="3">
               <v-list-item-action class="align-center">
                 <v-icon
                   style="font-size:18px"
@@ -96,7 +96,7 @@
                 >{{showTopic ?'fas fa-angle-double-down':'fas fa-angle-double-right'}}</v-icon>
               </v-list-item-action>
             </v-col>
-            <v-col cols="10">
+            <v-col cols="9">
               <v-list-item-content class="ml-4">
                 <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Topics'" />
               </v-list-item-content>
@@ -115,7 +115,7 @@
             @click="importComponent(topic.slug)"
           >
             <v-row no-gutters align="center" align-content="start">
-              <v-col cols="2">
+              <v-col cols="3">
                 <v-list-item-action class="align-center">
                   <v-icon
                     style="font-size:18px"
@@ -126,7 +126,7 @@
                   />
                 </v-list-item-action>
               </v-col>
-              <v-col cols="10">
+              <v-col cols="9">
                 <v-list-item-content class="mx-4">
                   <v-list-item-title
                     :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"

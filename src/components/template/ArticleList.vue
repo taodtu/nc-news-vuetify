@@ -1,20 +1,8 @@
 <template>
-  <v-container>
+  <v-container no-gutters>
     <v-layout row>
       <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
-        <v-card flat class="text-xs ma-3">
-          <v-card-title class="title secondary--text" style="word-break: keep-all">{{article.title}}</v-card-title>
-          <v-card-text class="pa-0 ml-4">
-            <div class="subheading">
-              <span>Author: {{ article.author }}</span>
-              <span class="ml-3">Votes: {{ article.votes }}</span>
-              <span class="ml-3">Date: {{ article.created_at.split("T")[0]}}</span>
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn class="ml-2" small @click="toArticle(article.article_id)">Detail Page</v-btn>
-          </v-card-actions>
-        </v-card>
+        <ArticleItem :article="article" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -22,7 +10,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {ARTICLE_SORT_CHART} from "../constant";
+import { ARTICLE_SORT_CHART } from "../constant";
+import ArticleItem from "./ArticleItem";
 
 export default {
   name: "codingViewer",
@@ -37,14 +26,55 @@ export default {
       ARTICLE_SORT_CHART
     };
   },
+  components: {
+    ArticleItem
+  },
   props: ["topic", "author"],
-   created() {
-    this.$store.dispatch("getArticles", { topic: this.topic });
+  created() {
+    this.callStore();
   },
   computed: {
     ...mapGetters(["articles"])
   },
+  watch: {
+    topic() {
+      this.callStore();
+    },
+    author() {
+      this.callStore();
+    },
+    limit() {
+      this.callStore();
+    },
+    sort_by() {
+      this.callStore();
+    },
+    order() {
+      this.callStore();
+    },
+    p() {
+      this.callStore(this.p);
+    }
+  },
   methods: {
+    callStore(p = 1) {
+      this.loading = true;
+      this.p = p;
+      this.$store
+        .dispatch("getArticles", {
+          topic: this.topic,
+          author: this.author,
+          sort_by: this.sort_by,
+          order: this.order,
+          limit: this.limit,
+          p
+        })
+        .then(res => (this.loading = false))
+        .catch(error => {
+          this.loading = false;
+          this.error = error;
+        });
+    },
     toArticle(id) {
       console.log(id);
     }
