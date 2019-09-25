@@ -5,7 +5,7 @@
       <v-card-text class="pa-0 ml-4">
         <div class="subheading pb-2">
           <v-chip
-            class="success lighten-2 mr-3"
+            class="pink lighten-3 mr-3"
             link
             small
             v-if="showTopicLink"

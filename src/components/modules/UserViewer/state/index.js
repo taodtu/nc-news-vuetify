@@ -25,16 +25,9 @@ const actions = {
   getAuthor({ commit }, username) {
     getUser(username).then(author => commit("GET_AUTHOR", author));
   },
-  getAuthors({ commit }, payload) {
-    let res = [];
-    payload.forEach(username => {
-      getUser(username)
-        .then(author => {
-          res.push(author);
-          return res;
-        })
-        .then(res => commit("ADD_USER", res));
-    });
+  async getAuthors({ commit }, payload) {
+    let res = await Promise.all(payload.map(username => getUser(username)));
+    commit("ADD_USER", res);
   }
 };
 
