@@ -5,7 +5,7 @@
       <v-card-text class="pa-0 ml-4">
         <div class="subheading pb-2">
           <v-chip
-            class="success lighten-1 mr-3"
+            class="success lighten-2 mr-3"
             link
             small
             v-if="showTopicLink"
@@ -13,7 +13,7 @@
           >
             <span>Topics: {{ article.topic }}</span>
           </v-chip>
-          <v-chip class="secondary lighten-2" link small v-if="showAuthorLink">
+          <v-chip class="secondary lighten-2" link small v-if="showAuthorLink" @click="importComponent(article.topic), hideTopics()">
             <span>Author: {{ article.author }}</span>
           </v-chip>
         </div>
@@ -52,6 +52,9 @@ export default {
     },
     showTopics() {
       this.$store.dispatch("setTopic", true);
+    },
+    hideTopics() {
+      this.$store.dispatch("setTopic", false);
     }
   }
 };
