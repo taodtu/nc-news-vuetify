@@ -12,7 +12,15 @@
       </v-layout>
     </v-container>
     <div class="d-flex justify-center">
-      <Page :pageTotal="pageTotal" :p="p" @pageClicked="handleEvent" />
+      <Page :pageTotal="pageTotal" :p="p" @pageClicked="handleEvent" class="mx-3" />
+      <v-select
+        class="ml-2 mt-0 pt-0 select"
+        width="100px"
+        chips
+        label="Items per page"
+        v-model="limit"
+        :items="list"
+      />
     </div>
   </div>
 </template>
@@ -22,6 +30,7 @@ import { mapGetters } from "vuex";
 import { ARTICLE_SORT_CHART } from "../constant";
 import ArticleItem from "./ArticleItem";
 import Page from "../button/Page";
+import LimitSelect from "../button/LimitSelect";
 
 export default {
   name: "codingViewer",
@@ -38,7 +47,8 @@ export default {
   },
   components: {
     ArticleItem,
-    Page
+    Page,
+    LimitSelect
   },
   props: ["topic", "author", "showTopicLink", "showAuthorLink"],
   created() {
@@ -48,6 +58,13 @@ export default {
     ...mapGetters(["articles"]),
     pageTotal() {
       return Math.ceil(this.articles.total_count / this.limit);
+    },
+    list() {
+      let list = [];
+      for (let i = 2; i <= 12; i + 2) {
+        list.push(i);
+      }
+      return list;
     }
   },
   watch: {
@@ -100,3 +117,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-select__selections input {
+  display: none;
+}
+.select {
+  max-width: 150px;
+}
+</style>
