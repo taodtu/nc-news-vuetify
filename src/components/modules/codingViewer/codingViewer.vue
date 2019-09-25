@@ -5,7 +5,7 @@
         class="toolbarTitle font-weight-light display-1 pl-3 mt-3"
       >Articles about coding</v-toolbar-title>
     </v-toolbar>
-    <ArticleList />
+    <ArticleList :topic="topic" />
   </div>
 </template>
 
@@ -18,16 +18,10 @@ export default {
   components: {
     ArticleList
   },
-  created() {
-    this.$store.dispatch("getArticles", { topic: "coding" });
-  },
-  computed: {
-    ...mapGetters(["articles"])
-  },
-  methods: {
-    toArticle(id) {
-      console.log(id);
-    }
+  data() {
+    return {
+      topic: "coding"
+    };
   }
 };
 </script>

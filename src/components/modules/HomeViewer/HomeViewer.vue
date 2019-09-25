@@ -16,7 +16,7 @@
           a comment) which they have added.
         </p>
         <v-flex wrap class="justify-space-between">
-          <p v-if="showTopic" class="ma-2">
+          <p  class="ma-2">
             <v-chip class="success lighten-1">Click the topics or user on the left to browse</v-chip>
           </p>
         </v-flex>

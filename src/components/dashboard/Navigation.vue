@@ -22,7 +22,7 @@
           dark
           value="true"
           :style="['HomeViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
-          @click="importComponent('Home')"
+          @click="importComponent('Home'), hideTopics()"
         >
           <v-row no-gutters align="center" align-content="start">
             <v-col cols="2">
@@ -53,7 +53,7 @@
           dark
           value="true"
           :style="['UserViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
-          @click="importComponent('User')"
+          @click="importComponent('User'), hideTopics()"
         >
           <v-row no-gutters align="center" align-content="start">
             <v-col cols="2">
@@ -93,9 +93,7 @@
                   style="font-size:18px"
                   class="text-xs-center icon ml-3"
                   color="grey lighten-5"
-                >
-                {{showTopic ?'fas fa-angle-double-down':'fas fa-angle-double-right'}}
-                </v-icon>
+                >{{showTopic ?'fas fa-angle-double-down':'fas fa-angle-double-right'}}</v-icon>
               </v-list-item-action>
             </v-col>
             <v-col cols="10">
@@ -167,6 +165,9 @@ export default {
     },
     setTopic() {
       this.$store.dispatch("setTopic", !this.showTopic);
+    },
+    hideTopics() {
+      this.$store.dispatch("setTopic", false);
     }
   }
 };

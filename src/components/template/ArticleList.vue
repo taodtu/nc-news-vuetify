@@ -22,11 +22,25 @@
 
 <script>
 import { mapGetters } from "vuex";
+import {ARTICLE_SORT_CHART} from "../constant";
 
 export default {
   name: "codingViewer",
-  props: ["options"],
-  created() {},
+  data() {
+    return {
+      loading: false,
+      error: "",
+      limit: 6,
+      p: 1,
+      sort_by: "created_at",
+      order: "desc",
+      ARTICLE_SORT_CHART
+    };
+  },
+  props: ["topic", "author"],
+   created() {
+    this.$store.dispatch("getArticles", { topic: this.topic });
+  },
   computed: {
     ...mapGetters(["articles"])
   },
