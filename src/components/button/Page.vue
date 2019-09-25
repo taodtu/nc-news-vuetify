@@ -1,11 +1,12 @@
 <template>
   <div class="page-number">
-    <button
+    <v-chip
       v-for="num in list"
       :key="num"
       :disabled="num===p"
       @click="$emit('pageClicked', {value:num, name:'p'})"
-    >{{num}}</button>
+      class="accent mx-1"
+    >{{num}}</v-chip>
   </div>
 </template>
 

@@ -1,17 +1,27 @@
 <template>
-  <v-container no-gutters>
-    <v-layout row>
-      <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
-        <ArticleItem :article="article" :showTopicLink="showTopicLink" :showAuthorLink="showAuthorLink"/>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div>
+    <v-container no-gutters>
+      <v-layout row>
+        <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
+          <ArticleItem
+            :article="article"
+            :showTopicLink="showTopicLink"
+            :showAuthorLink="showAuthorLink"
+          />
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <div class="d-flex justify-center">
+      <Page :pageTotal="pageTotal" :p="p" @pageClicked="handleEvent" />
+    </div>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import { ARTICLE_SORT_CHART } from "../constant";
 import ArticleItem from "./ArticleItem";
+import Page from "../button/Page";
 
 export default {
   name: "codingViewer",
@@ -27,14 +37,18 @@ export default {
     };
   },
   components: {
-    ArticleItem
+    ArticleItem,
+    Page
   },
   props: ["topic", "author", "showTopicLink", "showAuthorLink"],
   created() {
     this.callStore();
   },
   computed: {
-    ...mapGetters(["articles"])
+    ...mapGetters(["articles"]),
+    pageTotal() {
+      return Math.ceil(this.articles.total_count / this.limit);
+    }
   },
   watch: {
     topic() {
@@ -77,6 +91,11 @@ export default {
     },
     toArticle(id) {
       console.log(id);
+    },
+    handleEvent({ name, value }) {
+      name === "sort_by"
+        ? (this.sort_by = ARTICLE_SORT_CHART[value])
+        : (this[name] = value);
     }
   }
 };
