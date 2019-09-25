@@ -1,13 +1,15 @@
 <template>
-  <div class="toggle-button">
-    <button
+  <div >
+    <v-btn
+    small
       :disabled="on"
       @click="$emit('orderClicked', {value: left, name:'order'}), on=!on"
-    >{{left}}</button>
-    <button
+    >{{left}}</v-btn>
+    <v-btn
+    small
       :disabled="!on"
       @click="$emit('orderClicked', {value:right, name:'order'}), on=!on"
-    >{{right}}</button>
+    >{{right}}</v-btn>
   </div>
 </template>
 

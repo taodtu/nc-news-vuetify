@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div class="d-flex justify-start ml-3">
+    <div class="d-flex justify-space-between align-center mx-3">
       <v-select
-        class="ml-4 mt-4 mb-0 pb-0 dense select"
+        class="ml-4 mt-3 mb-0 pb-0 dense select"
         hide-details
         label="Sort By"
         v-model="ARTICLE_SORT_CHART[sort_by]"
         @change="handleEvent( {value:ARTICLE_SORT_CHART[sort_by], name:'sort_by'})"
         :items="sortOptions"
       />
+      <ToggleButton :left="'desc'" :right="'asc'" @orderClicked="handleEvent" class="mr-5" />
     </div>
     <v-container no-gutters class="mt-0 pt-0">
       <v-layout row class="mt-0 pt-0">
@@ -39,6 +40,7 @@ import { mapGetters } from "vuex";
 import { ARTICLE_SORT_CHART } from "../constant";
 import ArticleItem from "./ArticleItem";
 import Page from "../button/Page";
+import ToggleButton from "../button/ToggleButton";
 
 export default {
   name: "codingViewer",
@@ -56,7 +58,8 @@ export default {
   },
   components: {
     ArticleItem,
-    Page
+    Page,
+    ToggleButton
   },
   props: ["topic", "author", "showTopicLink", "showAuthorLink"],
   created() {
