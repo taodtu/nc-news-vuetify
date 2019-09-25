@@ -12,7 +12,7 @@
     dark
   >
     <v-layout column fill-height>
-      <v-list class="transparent pr-0 px-0">
+      <v-list class="transparent pr-0 px-0 d-flex-row">
         <v-list-item name="show-hide" class="my-0 py-0">
           <v-switch class="my-0 py-0" v-model="miniVariant" color="yellow lighten-4" />
         </v-list-item>
@@ -138,6 +138,9 @@
             </v-row>
           </v-list-item>
         </div>
+        <v-list-item class="mt-8">
+          <UserBar />
+        </v-list-item>
       </v-list>
     </v-layout>
   </v-navigation-drawer>
@@ -145,9 +148,13 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import UserBar from "./UserBar";
 
 export default {
   name: "Navigation",
+  components: {
+    UserBar
+  },
   data() {
     return {
       miniVariant: false

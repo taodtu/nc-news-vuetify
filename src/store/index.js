@@ -9,7 +9,8 @@ const state = {
   //this protery will be the component imported object, not the component name
   currentComponentRendered: {},
   showTopic: false,
-  topics: []
+  topics: [],
+  user: "jessjelly"
 };
 
 const mutations = {
@@ -21,17 +22,23 @@ const mutations = {
   },
   GET_TOPICS(state, payload) {
     state.topics = payload;
+  },
+  UPDATE_USER(state, payload) {
+    state.user = payload;
   }
 };
 
 const actions = {
+  updateUser({ commit }, payload) {
+    commit("UPDATE_USER", payload);
+  },
   getCurrentComponent({ commit }, payload) {
     commit("SET_CURRENT_COMPONENT", payload);
   },
-  importComponent({commit}, payload){
-      import(
-        `../components/modules/${payload}Viewer/${payload}Viewer.vue`
-      ).then(component => commit("SET_CURRENT_COMPONENT", component.default));
+  importComponent({ commit }, payload) {
+    import(`../components/modules/${payload}Viewer/${payload}Viewer.vue`).then(
+      component => commit("SET_CURRENT_COMPONENT", component.default)
+    );
   },
   setTopic({ commit }, payload) {
     commit("SET_TOPIC", payload);
@@ -53,7 +60,8 @@ const getters = {
           ? "fas fa-futbol"
           : "fas fa-utensils";
       return { ...topic, icon };
-    })
+    }),
+    user: state=>state.user
 };
 
 export default new Vuex.Store({

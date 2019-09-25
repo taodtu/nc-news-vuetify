@@ -1,15 +1,11 @@
 import { getUser } from "../../../api";
 
 const state = {
-  user: "jessjelly",
   author: {},
   authors: []
 };
 
 const mutations = {
-  UPDATE_USER(state, payload) {
-    state.user = payload;
-  },
   GET_AUTHOR(state, payload) {
     state.author = payload;
   },
@@ -19,9 +15,6 @@ const mutations = {
 };
 
 const actions = {
-  updateUser({ commit }, payload) {
-    commit("UPDATE_USER", payload);
-  },
   getAuthor({ commit }, username) {
     getUser(username).then(author => commit("GET_AUTHOR", author));
   },
@@ -32,7 +25,6 @@ const actions = {
 };
 
 const getters = {
-  user: state => state.user,
   author: state => state.author,
   authors: state => state.authors
 };

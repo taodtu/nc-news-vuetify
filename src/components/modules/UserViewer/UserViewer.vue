@@ -20,7 +20,7 @@
               class="align-self-center mx-5"
             />
             <v-card-text class="align-self-center">
-              <p>Username: {{author.username}}</p>
+              <p>User: {{author.username}}</p>
               <p>Name: {{author.name}}</p>
             </v-card-text>
           </v-card>
