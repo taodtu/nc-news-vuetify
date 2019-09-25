@@ -15,7 +15,6 @@
       <Page :pageTotal="pageTotal" :p="p" @pageClicked="handleEvent" class="mx-3" />
       <v-select
         class="ml-2 mt-0 pt-0 select"
-        width="100px"
         chips
         label="Items per page"
         v-model="limit"
@@ -30,7 +29,6 @@ import { mapGetters } from "vuex";
 import { ARTICLE_SORT_CHART } from "../constant";
 import ArticleItem from "./ArticleItem";
 import Page from "../button/Page";
-import LimitSelect from "../button/LimitSelect";
 
 export default {
   name: "codingViewer",
@@ -47,8 +45,7 @@ export default {
   },
   components: {
     ArticleItem,
-    Page,
-    LimitSelect
+    Page
   },
   props: ["topic", "author", "showTopicLink", "showAuthorLink"],
   created() {
@@ -61,7 +58,7 @@ export default {
     },
     list() {
       let list = [];
-      for (let i = 2; i <= 12; i + 2) {
+      for (let i = 2; i <= 12; i++) {
         list.push(i);
       }
       return list;

@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 import UserBar from "./UserBar";
 
 export default {
