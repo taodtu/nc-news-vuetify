@@ -5,7 +5,7 @@
         class="toolbarTitle font-weight-light display-1 pl-3 mt-3"
       >Articles about cooking</v-toolbar-title>
     </v-toolbar>
-    <ArticleList :topic="topic" />
+    <ArticleList :topic="topic" :showTopicLink="false" />
   </div>
 </template>
 

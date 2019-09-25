@@ -5,7 +5,7 @@
         class="toolbarTitle font-weight-light display-1 pl-3 mt-3"
       >Articles about coding</v-toolbar-title>
     </v-toolbar>
-    <ArticleList :topic="topic" />
+    <ArticleList :topic="topic" :showTopicLink="false" />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      topic: "coding"
+      topic: "coding",
     };
   }
 };

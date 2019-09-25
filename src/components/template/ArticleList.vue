@@ -2,7 +2,7 @@
   <v-container no-gutters>
     <v-layout row>
       <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
-        <ArticleItem :article="article" />
+        <ArticleItem :article="article" :showTopicLink="showTopicLink" :showAuthorLink="showAuthorLink"/>
       </v-flex>
     </v-layout>
   </v-container>
@@ -29,7 +29,7 @@ export default {
   components: {
     ArticleItem
   },
-  props: ["topic", "author"],
+  props: ["topic", "author", "showTopicLink", "showAuthorLink"],
   created() {
     this.callStore();
   },

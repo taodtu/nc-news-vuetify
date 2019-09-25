@@ -3,9 +3,19 @@
     <v-card flat class="text-xs ma-3">
       <v-card-title class="title secondary--text" style="word-break: keep-all">{{article.title}}</v-card-title>
       <v-card-text class="pa-0 ml-4">
-          <div class="subheading">
-          <span>Topics: {{ article.topic }}</span>
-          <span class="ml-3">Author: {{ article.author }}</span>
+        <div class="subheading pb-2">
+          <v-chip
+            class="success lighten-1 mr-3"
+            link
+            small
+            v-if="showTopicLink"
+            @click="importComponent(article.topic), showTopics()"
+          >
+            <span>Topics: {{ article.topic }}</span>
+          </v-chip>
+          <v-chip class="secondary lighten-2" link small v-if="showAuthorLink">
+            <span>Author: {{ article.author }}</span>
+          </v-chip>
         </div>
         <div class="subheading">
           <span>Comments: {{ article.comment_count }}</span>
@@ -26,6 +36,22 @@ export default {
   props: {
     article: {
       type: Object
+    },
+    showTopicLink: {
+      type: Boolean,
+      default: true
+    },
+    showAuthorLink: {
+      type: Boolean,
+      default: true
+    }
+  },
+  methods: {
+    importComponent(name) {
+      this.$store.dispatch("importComponent", name);
+    },
+    showTopics() {
+      this.$store.dispatch("setTopic", true);
     }
   }
 };
