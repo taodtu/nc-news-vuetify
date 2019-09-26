@@ -74,7 +74,7 @@ export default {
     },
     list() {
       let list = [];
-      for (let i = 2; i <= 12; i++) {
+      for (let i = 2; i <= 12; i+=2) {
         list.push(i);
       }
       return list;

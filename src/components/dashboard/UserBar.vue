@@ -1,7 +1,9 @@
 <template>
   <div>
     Current User:
-    <div class="mt-3">{{user}}</div>
+    <v-chip class="large success darkenen-3 mt-3">
+      <span>{{user}}</span>
+    </v-chip>
   </div>
 </template>
 
