@@ -26,6 +26,7 @@
         </div>
         <Vote :votes="article.votes" :id="article.article_id" v-on:updateVote="onUpdateVote" />
       </v-card>
+      <AddComment :id="id" />
     </v-container>
   </div>
 </template>
@@ -33,13 +34,15 @@
 <script>
 import { mapGetters } from "vuex";
 import Vote from "../../button/Vote";
+import AddComment from "./AddComment"
 export default {
   name: "ArticleViewer",
   components: {
-    Vote
+    Vote,
+    AddComment
   },
   computed: {
-    ...mapGetters(["article"]),
+    ...mapGetters(["article", "id"]),
     date() {
       return this.article.created_at && this.article.created_at.split("T")[0];
     }

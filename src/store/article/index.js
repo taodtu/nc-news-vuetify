@@ -24,7 +24,8 @@ const actions = {
 };
 
 const getters = {
-  article: state => state.article
+  article: state => state.article,
+  id: state=>state.article.article_id
 };
 
 const articleModule = {

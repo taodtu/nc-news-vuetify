@@ -138,6 +138,7 @@
             </v-row>
           </v-list-item>
         </div>
+        <v-divider></v-divider>
         <v-list-item class="mt-8">
           <UserBar />
         </v-list-item>
