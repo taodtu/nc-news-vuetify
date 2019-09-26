@@ -1,17 +1,19 @@
 <template>
-  <div class="outline">
-    <h4>Post a comment to this article with current author</h4>
-    <form @submit.prevent="onSubmit">
+  <v-card class="my-3">
+    <div>
+      <h4 class="mx-auto pt-4 px-3">Post a comment to this article with current author</h4>
+    </div>
+    <div class="mx-auto px-4"><form @submit.prevent="onSubmit">
       <div class="form">
         <div class="body">
-          <input placeholder="new comment" v-model="newComment" />
+          <v-text-field hide-details placeholder="new comment" v-model="newComment" />
         </div>
-        <div class="submit">
-          <button type="submit" :disabled="newComment.length===0">Submit</button>
+        <div >
+          <v-btn small class="secondary ma-3" type="submit" :disabled="newComment.length===0">Submit</v-btn>
         </div>
       </div>
-    </form>
-  </div>
+    </form></div>
+  </v-card>
 </template>
 
 <script>
@@ -40,29 +42,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.outline {
-  margin: 0.5em, 0.5em;
-  border-radius: 1em;
-  border: 1.5px solid rgb(3, 70, 6);
-  margin-bottom: 0.5em;
-}
-.form {
-  display: flex;
-  flex-flow: wrap column;
-  align-items: center;
-  margin-bottom: 0.9em;
-}
-
-.username {
-  text-align: left;
-}
-.comment {
-  text-align: justify;
-  line-height: 1.5em;
-  margin-left: 0.5em;
-}
-.submit {
-  margin: 1em 0.5em 0em;
-}
-</style>

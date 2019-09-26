@@ -1,9 +1,11 @@
 <template>
-    <div class="deletebutton">
-         <button 
+         <v-btn 
+         color="yellow"
+         class=" darken-2 white--text"
+         small
             @click="handleDelete"
             :disabled='author !== user'
-         > Delete </button></div>
+         > Delete </v-btn>
 </template>
 
 <script>

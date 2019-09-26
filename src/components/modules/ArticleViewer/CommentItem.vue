@@ -7,11 +7,11 @@
       <span class="tag">Date: {{comment.created_at.split("T")[0]}}</span>
     </div>
     <div class="mid">
-      <p>Comment: {{comment.body}}</p>
+      <p class="mb-0">Comment: {{comment.body}}</p>
     </div>
     <div class="right">
       <div class="vote">
-        <Vote :votes="comment.votes" :id="comment.comment_id" v-on:updateVote="onUpdateVote" />
+        <Vote :votes="comment.votes" :id="comment.comment_id" v-on:updateVote="onUpdateVote" class=" mt-3 pt-0"/>
       </div>
       <div class="vote">
         <DeleteComment :author="comment.author" :id="comment.comment_id" />
