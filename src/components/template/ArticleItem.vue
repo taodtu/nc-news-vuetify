@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card flat class="text-xs mx-3 my-1">
+    <v-card class="text-xs mx-4 my-2">
       <v-card-title class="title secondary--text" style="word-break: keep-all">{{article.title}}</v-card-title>
       <v-card-text class="pa-0 ml-4">
         <div class="subheading pb-2">
@@ -13,9 +13,8 @@
           >
             <span>Topics: {{ article.topic }}</span>
           </v-chip>
-          
-            <span>Author: {{ article.author }}</span>
-          
+
+          <span>Author: {{ article.author }}</span>
         </div>
         <div class="subheading">
           <span>Comments: {{ article.comment_count }}</span>
@@ -24,7 +23,11 @@
         </div>
       </v-card-text>
       <v-card-actions>
-        <v-btn class="ml-2 success" small @click="importComponent('Article'), getArticle(article.article_id), getComments(article.article_id)">Detail Page</v-btn>
+        <v-btn
+          class="ml-2 success"
+          small
+          @click="importComponent('Article'), getArticle(article.article_id), getComments(article.article_id)"
+        >Detail Page</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -56,13 +59,13 @@ export default {
     hideTopics() {
       this.$store.dispatch("setTopic", false);
     },
-    getArticle(id){
-      this.$store.dispatch("getArticle", id)
+    getArticle(id) {
+      this.$store.dispatch("getArticle", id);
     },
-    getComments(id){
+    getComments(id) {
       this.$store.dispatch("getComments", {
         id
-      })
+      });
     }
   }
 };

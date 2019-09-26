@@ -16,8 +16,8 @@
           a comment) which they have added.
         </p>
         <v-flex wrap class="justify-space-between">
-          <p  class="ma-2">
-            <v-chip class="success lighten-1">Click the topics or user on the left to browse</v-chip>
+          <p class="ma-2">
+            <v-chip large class="secondary lighten-1">Click the topics or user on the left to browse</v-chip>
           </p>
         </v-flex>
       </v-layout>
@@ -26,14 +26,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
-  name: "HomeViewer",
-  computed: {
-    ...mapGetters(["showTopic"])
-  },
-  created() {
-    this.$store.dispatch("getTopics").catch(error => error);
-  }
+  name: "HomeViewer"
 };
 </script>
