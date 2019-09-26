@@ -1,46 +1,49 @@
 <template>
   <div>
     <div class="article-sort-order">
-      <SortSelect
-        :sortValue="ARTICLE_SORT_CHART[sort_by]"
-        :options="['date', 'votes', 'author']"
-        @sortChange="handleEvent"
-      />
-      <ToggleButton :left="'desc'" :right="'asc'" @orderClicked="handleEvent" />
+      <div class="d-flex justify-start align-center mx-3">
+        <v-select
+          class="ml-4 mt-3 mb-0 pb-0 dense select"
+          hide-details
+          label="Sort By"
+          v-model="ARTICLE_SORT_CHART[sort_by]"
+          @change="handleEvent( {value:ARTICLE_SORT_CHART[sort_by], name:'sort_by'})"
+          :items="sortOptions"
+        />
+        <v-spacer></v-spacer>
+        <ToggleButton :left="'desc'" :right="'asc'" @orderClicked="handleEvent" />
+      </div>
     </div>
-    <CommentItem v-for="comment in comments" :key="comment.comment_id" :comment="comment">
-      <router-link :to="'/articles/'+comment.article_id" v-if="belongTo==='Author'">Article</router-link>
-      <router-link
-        :to="'/users/'+comment.author"
-        v-if="belongTo==='Article'"
-      >Author: {{comment.author}}</router-link>
-    </CommentItem>
+    <CommentItem
+      v-for="comment in comments"
+      :key="comment.comment_id"
+      :comment="comment"
+    >Author: {{comment.author}}</CommentItem>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import CommentItem from "./CommentItem";
-import SortSelect from "../button/SortSelect";
-import ToggleButton from "../button/ToggleButton";
-import { ARTICLE_SORT_CHART } from "../constant";
+import ToggleButton from "../../button/ToggleButton";
+import { ARTICLE_SORT_CHART } from "../../constant";
 
 export default {
   name: "CommentList",
   components: {
     CommentItem,
-    SortSelect,
     ToggleButton
   },
   data() {
     return {
       sort_by: "created_at",
       order: "desc",
-      ARTICLE_SORT_CHART
+      ARTICLE_SORT_CHART,
+      sortOptions: ["date", "votes", "author"]
     };
   },
   computed: {
-    ...mapGetters(["comments"])
+    ...mapGetters(["comments", "id"])
   },
   watch: {
     sort_by() {
@@ -55,8 +58,7 @@ export default {
       this.$store.dispatch("getComments", {
         id: this.id,
         sort_by: this.sort_by,
-        order: this.order,
-        belongTo: this.belongTo
+        order: this.order
       });
     },
     handleEvent({ name, value }) {
@@ -65,9 +67,15 @@ export default {
         : (this[name] = value);
     }
   },
-  props: ["id", "belongTo", "showArticle"],
-  created() {
-    this.callStore();
-  }
+  
 };
 </script>
+
+<style scoped>
+.v-select__selections input {
+  display: none;
+}
+.select {
+  max-width: 150px;
+}
+</style>

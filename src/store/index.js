@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import articles from "./articles/index";
 import article from "./article/index";
+import comments from "./comments"
 import { getTopics } from "../components/api";
 
 Vue.use(Vuex);
@@ -68,7 +69,8 @@ const getters = {
 export default new Vuex.Store({
   modules: {
     articles,
-    article
+    article,
+    comments
   },
   state,
   mutations,

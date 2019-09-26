@@ -119,9 +119,6 @@ export default {
           this.error = error;
         });
     },
-    toArticle(id) {
-      console.log(id);
-    },
     handleEvent({ name, value }) {
       name === "sort_by"
         ? (this.sort_by = ARTICLE_SORT_CHART[value])

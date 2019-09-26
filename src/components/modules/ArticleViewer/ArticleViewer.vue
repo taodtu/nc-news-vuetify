@@ -27,6 +27,7 @@
         <Vote :votes="article.votes" :id="article.article_id" v-on:updateVote="onUpdateVote" />
       </v-card>
       <AddComment :id="id" />
+      <CommentList />
     </v-container>
   </div>
 </template>
@@ -35,14 +36,14 @@
 import { mapGetters } from "vuex";
 import Vote from "../../button/Vote";
 import AddComment from "./AddComment";
+import CommentList from "./CommentList";
+
 export default {
   name: "ArticleViewer",
   components: {
     Vote,
-    AddComment
-  },
-  created() {
-    this.$store.registerModule("Comments", state);
+    AddComment,
+    CommentList
   },
   computed: {
     ...mapGetters(["article", "id"]),

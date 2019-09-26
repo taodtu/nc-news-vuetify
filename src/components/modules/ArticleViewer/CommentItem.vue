@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Vote from "../button/Vote";
+import Vote from "../../button/Vote";
 import DeleteComment from "./DeleteComment";
 
 export default {

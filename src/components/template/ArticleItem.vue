@@ -24,7 +24,7 @@
         </div>
       </v-card-text>
       <v-card-actions>
-        <v-btn class="ml-2 success" small @click="importComponent('Article'), getArticle(article.article_id)">Detail Page</v-btn>
+        <v-btn class="ml-2 success" small @click="importComponent('Article'), getArticle(article.article_id), getComments(article.article_id)">Detail Page</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -58,6 +58,11 @@ export default {
     },
     getArticle(id){
       this.$store.dispatch("getArticle", id)
+    },
+    getComments(id){
+      this.$store.dispatch("getComments", {
+        id
+      })
     }
   }
 };
