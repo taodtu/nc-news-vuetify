@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex justify-space-between align-center mx-3">
+    <div class="d-flex justify-start align-center mx-3">
       <v-select
         class="ml-4 mt-3 mb-0 pb-0 dense select"
         hide-details
@@ -9,7 +9,9 @@
         @change="handleEvent( {value:ARTICLE_SORT_CHART[sort_by], name:'sort_by'})"
         :items="sortOptions"
       />
+      <v-spacer></v-spacer>
       <ToggleButton :left="'desc'" :right="'asc'" @orderClicked="handleEvent" class="mr-5" />
+      <v-spacer></v-spacer>
     </div>
     <v-container no-gutters class="mt-0 pt-0">
       <v-layout row class="mt-0 pt-0">

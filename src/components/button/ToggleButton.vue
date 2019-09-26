@@ -1,12 +1,14 @@
 <template>
-  <div >
+  <div>
     <v-btn
-    small
+      class="accent"
+      small
       :disabled="on"
       @click="$emit('orderClicked', {value: left, name:'order'}), on=!on"
     >{{left}}</v-btn>
     <v-btn
-    small
+      small
+      class="accent"
       :disabled="!on"
       @click="$emit('orderClicked', {value:right, name:'order'}), on=!on"
     >{{right}}</v-btn>

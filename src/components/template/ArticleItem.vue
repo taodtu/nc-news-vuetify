@@ -24,7 +24,7 @@
         </div>
       </v-card-text>
       <v-card-actions>
-        <v-btn class="ml-2" small @click="toArticle(article.article_id)">Detail Page</v-btn>
+        <v-btn class="ml-2 success" small @click="toArticle(article.article_id)">Detail Page</v-btn>
       </v-card-actions>
     </v-card>
   </div>
