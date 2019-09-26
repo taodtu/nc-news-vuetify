@@ -5,9 +5,9 @@
     </v-toolbar>
     <v-container>
       <v-card class="d-flex-row">
-        <div class="subheading justify-center">
+        <div class="subheading justify-center mx-2">
           <v-chip
-            class="accent ma-4"
+            class="accent my-3 mr-2"
             link
             small
             @click="importComponent(article.topic), showTopics()"
