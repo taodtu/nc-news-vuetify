@@ -34,12 +34,15 @@
 <script>
 import { mapGetters } from "vuex";
 import Vote from "../../button/Vote";
-import AddComment from "./AddComment"
+import AddComment from "./AddComment";
 export default {
   name: "ArticleViewer",
   components: {
     Vote,
     AddComment
+  },
+  created() {
+    this.$store.registerModule("Comments", state);
   },
   computed: {
     ...mapGetters(["article", "id"]),
