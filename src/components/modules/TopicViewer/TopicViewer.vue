@@ -9,8 +9,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import ArticleList from "./ArticleList";
-import state from "./state"
+import ArticleList from "../Articles/ArticleList";
+import state from "../Articles/state"
 
 export default {
   name: "TopicViewer",

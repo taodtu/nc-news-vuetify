@@ -11,7 +11,7 @@
           <v-card
             class="ma-3 d-flex justify-center align-center"
             :style="[user === author.username ? {'background': '#cdffc2'} : {}]"
-            @click="setUser(author.username)"
+            @click="setUser(author.username), importComponent('UserPage')"
           >
             <v-img
               :src="author.avatar_url"
@@ -53,7 +53,10 @@ export default {
   methods: {
     setUser(name) {
       this.$store.dispatch("updateUser", name);
-    }
+    },
+    importComponent(name) {
+      this.$store.dispatch("importComponent", name);
+    },
   }
 };
 </script>

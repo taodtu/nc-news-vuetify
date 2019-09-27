@@ -139,6 +139,31 @@
           </v-list-item>
         </div>
         <v-divider></v-divider>
+
+        <v-list-item
+          class="text-xs-middle mx-0 px-0"
+          dark
+          value="true"
+          v-if="'ArticleViewer' === currentModuleName"
+          :style="[ {'background': '#e6b400'}]"
+        >
+              <v-list-item-content class="ml-4">
+                <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Article Page'" />
+              </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item
+          class="text-xs-middle mx-0 px-0"
+          dark
+          value="true"
+          v-if="'UserPageViewer' === currentModuleName"
+          :style="[ {'background': '#e6b400'}]"
+        >
+              <v-list-item-content class="ml-4">
+                <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'User Page'" />
+              </v-list-item-content>
+        </v-list-item>
+
         <v-list-item class="mt-8">
           <UserBar />
         </v-list-item>
