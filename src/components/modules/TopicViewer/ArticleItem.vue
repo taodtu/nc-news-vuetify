@@ -8,7 +8,7 @@
             class="secondary lighten-3 mr-3"
             link
             small
-            v-if="showTopicLink"
+            v-if="article.topic ===''"
             @click="importComponent('Topic'), showTopics(), changeTopic(article.topic)"
           >
             <span>Topics: {{ article.topic }}</span>

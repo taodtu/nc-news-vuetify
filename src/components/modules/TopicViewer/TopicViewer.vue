@@ -10,11 +10,15 @@
 <script>
 import { mapGetters } from "vuex";
 import ArticleList from "./ArticleList";
+import state from "./state"
 
 export default {
   name: "TopicViewer",
   components: {
     ArticleList
+  },
+  created(){
+    this.$store.registerModule("articles", state);
   }
 };
 </script>

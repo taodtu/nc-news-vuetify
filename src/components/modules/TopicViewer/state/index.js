@@ -1,4 +1,4 @@
-import { getArticles } from "../../components/api";
+import { getArticles } from "../../../api";
 
 const state = {
   articles: []
