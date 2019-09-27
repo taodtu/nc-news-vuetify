@@ -4,25 +4,9 @@
       <v-card-title class="title secondary--text" style="word-break: keep-all">{{article.title}}</v-card-title>
       <v-card-text class="pa-0 ml-4">
         <div class="subheading pb-2">
-          <v-chip
-            class="secondary lighten-3 mr-3"
-            link
-            small
-            v-if="topic ===''"
-            @click="importComponent('Topic'), showTopics(), changeTopic(article.topic)"
-          >
-            <span>Topics: {{ article.topic }}</span>
-          </v-chip>
+          <span class="mr-3">Topics: {{ article.topic }}</span>
 
-          <v-chip
-            class="success mr-3"
-            link
-            small
-            v-if="showAuthorLink"
-            @click="importComponent('UserPage')"
-          >
-            <span>Author: {{ article.author }}</span>
-          </v-chip>
+          <span>Author: {{ article.author }}</span>
         </div>
         <div class="subheading">
           <span>Comments: {{ article.comment_count }}</span>
@@ -43,10 +27,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "ArticleItem",
-  computed:{
+  computed: {
     ...mapGetters(["topic"])
   },
   props: {
