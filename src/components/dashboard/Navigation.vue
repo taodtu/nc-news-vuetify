@@ -1,5 +1,6 @@
 <template>
   <v-navigation-drawer
+    v-if="drawer"
     class="drawer secondary"
     disable-resize-watcher
     permanent
@@ -13,7 +14,7 @@
     <v-layout column fill-height>
       <v-list class="transparent pr-0 px-0 d-flex-row">
         <v-list-item class="d-flex justify-center my-2">
-          <v-icon color="grey lighten-5" v-html="'fas fa-map-marked-alt' " large/>
+          <v-icon color="grey lighten-5" v-html="'fas fa-map-marked-alt' " large />
         </v-list-item>
 
         <v-list-item
@@ -156,7 +157,7 @@ export default {
     UserBar
   },
   computed: {
-    ...mapGetters(["currentComponentRendered", "showTopic", "topics", "topic"]),
+    ...mapGetters(["currentComponentRendered", "showTopic", "topics", "topic", "drawer"]),
     currentModuleName() {
       return this.currentComponentRendered.name;
     }

@@ -12,6 +12,7 @@ const state = {
   topics: [],
   user: "jessjelly",
   id: undefined,
+  drawer:true
 };
 
 const mutations = {
@@ -32,6 +33,9 @@ const mutations = {
   },
   SET_ID(state, payload){
     state.id=payload
+  },
+  SET_DRAWER(state, payload){
+    state.drawer=payload
   }
 };
 
@@ -53,11 +57,14 @@ const actions = {
   getTopics({ commit }) {
     return getTopics().then(topics => commit("GET_TOPICS", topics));
   },
-  changeTopic({commit}, payload){
-    commit("CHANGE_TOPIC", payload)
+  changeTopic({ commit }, payload) {
+    commit("CHANGE_TOPIC", payload);
   },
-  setID({commit}, payload){
-    commit("SET_ID", payload)
+  setID({ commit }, payload) {
+    commit("SET_ID", payload);
+  },
+  setDrawer({ commit }, payload) {
+    commit("SET_DRAWER", payload);
   }
 };
 
@@ -76,7 +83,8 @@ const getters = {
     }),
     user: state=>state.user,
     topic: state=>state.topic,
-    id: state=> state.id
+    id: state=> state.id,
+    drawer: state=>state.drawer
 };
 
 export default new Vuex.Store({
