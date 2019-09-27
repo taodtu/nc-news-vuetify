@@ -1,10 +1,10 @@
 <template>
   <footer>
-    <hr />
+    <v-divider></v-divider>
     <small>
       &copy; Copyright 2019 Tao Li;
     </small>
-    <hr />
+    <v-divider></v-divider>
   </footer>
 </template>
 
