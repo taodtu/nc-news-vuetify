@@ -9,6 +9,7 @@
         />
       </keep-alive>
     </v-content>
+    <Footer />
   </div>
 </template>
 
@@ -17,12 +18,14 @@ import { mapGetters } from "vuex";
 import Header from "./Header";
 import Navigation from "./Navigation";
 import HomeViewer from "../modules/HomeViewer/HomeViewer";
+import Footer from "./Footer"
 
 export default {
   name: "Dashboard",
   components: {
     Header,
-    Navigation
+    Navigation,
+    Footer
   },
   data() {
     return {

@@ -1,11 +1,9 @@
 <template>
-  <footer>
+  <v-footer app dark class="primary">
     <v-divider></v-divider>
-    <small>
-      &copy; Copyright 2019 Tao Li;
-    </small>
+      &copy; Copyright 2019 Tao Li
     <v-divider></v-divider>
-  </footer>
+  </v-footer>
 </template>
 
 <script>
