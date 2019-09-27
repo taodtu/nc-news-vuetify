@@ -8,13 +8,21 @@
             class="secondary lighten-3 mr-3"
             link
             small
-            v-if="article.topic ===''"
+            v-if="topic ===''"
             @click="importComponent('Topic'), showTopics(), changeTopic(article.topic)"
           >
             <span>Topics: {{ article.topic }}</span>
           </v-chip>
 
-          <span>Author: {{ article.author }}</span>
+          <v-chip
+            class="success mr-3"
+            link
+            small
+            v-if="showAuthorLink"
+            @click="importComponent('UserPage')"
+          >
+            <span>Author: {{ article.author }}</span>
+          </v-chip>
         </div>
         <div class="subheading">
           <span>Comments: {{ article.comment_count }}</span>
@@ -24,7 +32,8 @@
       </v-card-text>
       <v-card-actions>
         <v-btn
-          class="ml-2 success"
+          class="ml-2 white--text"
+          color="#ff8400"
           small
           @click="changeID(article.article_id), importComponent('Article')"
         >Detail Page</v-btn>
@@ -34,15 +43,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "ArticleItem",
+  computed:{
+    ...mapGetters(["topic"])
+  },
   props: {
     article: {
       type: Object
-    },
-    showTopicLink: {
-      type: Boolean,
-      default: true
     },
     showAuthorLink: {
       type: Boolean,

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { getTopics } from "../components/api";
+import articles from "./articles";
 
 Vue.use(Vuex);
 
@@ -88,6 +89,9 @@ const getters = {
 };
 
 export default new Vuex.Store({
+  modules: {
+    articles,
+  },
   state,
   mutations,
   actions,

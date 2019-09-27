@@ -1,7 +1,7 @@
 <template>
   <div>
     Current User:
-    <v-chip class="large success darkenen-3 mt-3">
+    <v-chip class="large success darkenen-3 mt-3" @click="importComponent('UserPage')">
       <span>{{user}}</span>
     </v-chip>
   </div>
@@ -13,6 +13,11 @@ export default {
   name: "UserBar",
   computed: {
     ...mapGetters(["user"])
+  },
+  methods: {
+    importComponent(name) {
+      this.$store.dispatch("importComponent", name);
+    }
   }
 };
 </script>

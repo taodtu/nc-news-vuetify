@@ -18,7 +18,6 @@
         <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
           <ArticleItem
             :article="article"
-            :showTopicLink="showTopicLink"
             :showAuthorLink="showAuthorLink"
           />
         </v-flex>
@@ -63,7 +62,7 @@ export default {
     Page,
     ToggleButton
   },
-  props: [ "showTopicLink", "showAuthorLink"],
+  props: [ "author", "showAuthorLink"],
   created() {
     this.callStore();
   },
