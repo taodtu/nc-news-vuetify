@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { getTopics } from "../components/api";
 import articles from "./articles";
+import comments from "./comments";
 
 Vue.use(Vuex);
 
@@ -9,11 +10,11 @@ const state = {
   //this protery will be the component imported object, not the component name
   currentComponentRendered: {},
   showTopic: false,
-  topic:"",
+  topic: "",
   topics: [],
   user: "jessjelly",
   id: undefined,
-  drawer:true
+  drawer: true
 };
 
 const mutations = {
@@ -29,14 +30,14 @@ const mutations = {
   UPDATE_USER(state, payload) {
     state.user = payload;
   },
-  CHANGE_TOPIC(state, payload){
-    state.topic=payload
+  CHANGE_TOPIC(state, payload) {
+    state.topic = payload;
   },
-  SET_ID(state, payload){
-    state.id=payload
+  SET_ID(state, payload) {
+    state.id = payload;
   },
-  SET_DRAWER(state, payload){
-    state.drawer=payload
+  SET_DRAWER(state, payload) {
+    state.drawer = payload;
   }
 };
 
@@ -82,15 +83,16 @@ const getters = {
           : "fas fa-utensils";
       return { ...topic, icon };
     }),
-    user: state=>state.user,
-    topic: state=>state.topic,
-    id: state=> state.id,
-    drawer: state=>state.drawer
+  user: state => state.user,
+  topic: state => state.topic,
+  id: state => state.id,
+  drawer: state => state.drawer
 };
 
 export default new Vuex.Store({
   modules: {
     articles,
+    comments
   },
   state,
   mutations,

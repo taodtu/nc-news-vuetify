@@ -36,7 +36,7 @@
 import { mapGetters } from "vuex";
 import Vote from "../../button/Vote";
 import AddComment from "./AddComment";
-import CommentList from "./CommentList";
+import CommentList from "../Comments/CommentList";
 import articleState from "./state/article";
 
 export default {

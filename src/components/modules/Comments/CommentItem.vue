@@ -1,5 +1,5 @@
 <template>
-  <div class="article">
+  <div class="article mx-2">
     <div class="left">
       <span class="tag">
         <slot></slot>
@@ -7,7 +7,7 @@
       <span class="tag">Date: {{comment.created_at.split("T")[0]}}</span>
     </div>
     <div class="mid">
-      <p class="mb-0">Comment: {{comment.body}}</p>
+      <p class="mb-0 mx-2">Comment: {{comment.body}}</p>
     </div>
     <div class="right">
       <div class="vote">

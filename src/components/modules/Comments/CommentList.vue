@@ -14,11 +14,13 @@
         <ToggleButton :left="'desc'" :right="'asc'" @orderClicked="handleEvent" />
       </div>
     </div>
-    <CommentItem
-      v-for="comment in comments"
-      :key="comment.comment_id"
-      :comment="comment"
-    >Author: {{comment.author}}</CommentItem>
+    <v-container no-gutters class="mt-0 pt-0">
+      <v-layout row class="mt-0 pt-0">
+        <v-flex xs12 md6 v-for="comment in comments" :key="comment.comment_id">
+          <CommentItem :comment="comment">Author: {{comment.author}}</CommentItem>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
@@ -27,7 +29,6 @@ import { mapGetters } from "vuex";
 import CommentItem from "./CommentItem";
 import ToggleButton from "../../button/ToggleButton";
 import { ARTICLE_SORT_CHART } from "../../constant";
-import commentState from "./state/comments";
 
 export default {
   name: "CommentList",
@@ -72,7 +73,6 @@ export default {
     }
   },
   created() {
-    this.$store.registerModule("comments", commentState);
     this.callStore();
   }
 };
