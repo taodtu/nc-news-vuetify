@@ -9,7 +9,7 @@
             link
             small
             v-if="showTopicLink"
-            @click="importComponent(article.topic), showTopics()"
+            @click="importComponent('Topic'), showTopics(), changeTopic(article.topic)"
           >
             <span>Topics: {{ article.topic }}</span>
           </v-chip>
@@ -59,8 +59,11 @@ export default {
     hideTopics() {
       this.$store.dispatch("setTopic", false);
     },
-    changeID(id){
-      this.$store.dispatch("setID", id)
+    changeID(id) {
+      this.$store.dispatch("setID", id);
+    },
+    changeTopic(name) {
+      this.$store.dispatch("changeTopic", name);
     }
   }
 };

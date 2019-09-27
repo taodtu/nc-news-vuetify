@@ -10,7 +10,7 @@
             class="accent my-3 mr-2"
             link
             small
-            @click="importComponent(article.topic), showTopics()"
+            @click="importComponent('Topic'), showTopics(), changeTopic(article.topic)"
           >
             <span>Topics: {{ article.topic }}</span>
           </v-chip>
@@ -37,7 +37,7 @@ import { mapGetters } from "vuex";
 import Vote from "../../button/Vote";
 import AddComment from "./AddComment";
 import CommentList from "./CommentList";
-import articleState from "./state/article"
+import articleState from "./state/article";
 
 export default {
   name: "ArticleViewer",
@@ -71,13 +71,16 @@ export default {
           this.article.votes -= change;
         });
     },
-    callStore(){
-      this.$store.dispatch("getArticle", this.id)
+    callStore() {
+      this.$store.dispatch("getArticle", this.id);
+    },
+    changeTopic(name) {
+      this.$store.dispatch("changeTopic", name);
     }
   },
-  created(){
+  created() {
     this.$store.registerModule("article", articleState);
-    this.callStore()
+    this.callStore();
   }
 };
 </script>

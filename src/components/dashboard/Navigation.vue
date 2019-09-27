@@ -83,8 +83,8 @@
           class="text-xs-middle mx-0 px-0"
           dark
           value="true"
-          :style="['TopicViewer' === currentModuleName ? {'background': '#e6b400'} : {}]"
-          @click="importComponent('Topic'), setTopic()"
+          :style="[('TopicViewer' === currentModuleName && topic === '') ? {'background': '#e6b400'} : {}]"
+          @click="importComponent('Topic'), setTopic(), changeTopic('')"
         >
           <v-row no-gutters align="center" align-content="start">
             <v-col cols="3">
@@ -106,13 +106,13 @@
 
         <div v-if="showTopic">
           <v-list-item
-            v-for="topic in topics"
-            :key="topic.slug"
+            v-for="topicObj in topics"
+            :key="topicObj.slug"
             class="text-xs-middle mx-0 px-0"
             dark
             value="true"
-            :style="[`${topic.slug}Viewer` === currentModuleName ? {'background': '#e6b400'} : {}]"
-            @click="importComponent(topic.slug)"
+            :style="[('TopicViewer' === currentModuleName && topicObj.slug === topic)? {'background': '#e6b400'} : {}]"
+            @click="importComponent('Topic'), changeTopic(topicObj.slug)"
           >
             <v-row no-gutters align="center" align-content="start">
               <v-col cols="3">
@@ -122,7 +122,7 @@
                     class="text-xs-center icon ml-3"
                     :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
                     color="grey lighten-5"
-                    v-html="topic.icon"
+                    v-html="topicObj.icon"
                   />
                 </v-list-item-action>
               </v-col>
@@ -131,7 +131,7 @@
                   <v-list-item-title
                     :style="['UserViewer' === currentModuleName ? {'color': '#383838 !important'} : {}]"
                     class="white--text text--lighten-5 body-2"
-                    v-text="topic.slug"
+                    v-text="topicObj.slug"
                   />
                 </v-list-item-content>
               </v-col>
@@ -162,7 +162,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["currentComponentRendered", "showTopic", "topics"]),
+    ...mapGetters(["currentComponentRendered", "showTopic", "topics", "topic"]),
     currentModuleName() {
       return this.currentComponentRendered.name;
     }
@@ -176,6 +176,9 @@ export default {
     },
     hideTopics() {
       this.$store.dispatch("setTopic", false);
+    },
+    changeTopic(name) {
+      this.$store.dispatch("changeTopic", name);
     }
   }
 };

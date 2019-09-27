@@ -39,10 +39,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { ARTICLE_SORT_CHART } from "../constant";
+import { ARTICLE_SORT_CHART } from "../../constant";
 import ArticleItem from "./ArticleItem";
-import Page from "../button/Page";
-import ToggleButton from "../button/ToggleButton";
+import Page from "../../button/Page";
+import ToggleButton from "../../button/ToggleButton";
 
 export default {
   name: "codingViewer",
@@ -63,12 +63,12 @@ export default {
     Page,
     ToggleButton
   },
-  props: ["topic", "author", "showTopicLink", "showAuthorLink"],
+  props: [ "showTopicLink", "showAuthorLink"],
   created() {
     this.callStore();
   },
   computed: {
-    ...mapGetters(["articles"]),
+    ...mapGetters(["articles", "topic"]),
     pageTotal() {
       return Math.ceil(this.articles.total_count / this.limit);
     },
