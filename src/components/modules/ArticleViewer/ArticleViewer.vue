@@ -37,6 +37,7 @@ import { mapGetters } from "vuex";
 import Vote from "../../button/Vote";
 import AddComment from "./AddComment";
 import CommentList from "./CommentList";
+import articleState from "./state/article"
 
 export default {
   name: "ArticleViewer",
@@ -69,7 +70,14 @@ export default {
         .catch(error => {
           this.article.votes -= change;
         });
+    },
+    callStore(){
+      this.$store.dispatch("getArticle", this.id)
     }
+  },
+  created(){
+    this.$store.registerModule("article", articleState);
+    this.callStore()
   }
 };
 </script>

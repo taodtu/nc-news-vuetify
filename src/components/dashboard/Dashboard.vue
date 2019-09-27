@@ -6,13 +6,8 @@
       <keep-alive>
         <component
           :is="currentComponentRendered"
-          v-if="currentComponentRendered.name==='UserViewer'"
         />
       </keep-alive>
-      <component
-        :is="currentComponentRendered"
-        v-if="currentComponentRendered.name!=='UserViewer'"
-      />
     </v-content>
   </div>
 </template>

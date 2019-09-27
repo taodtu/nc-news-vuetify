@@ -26,7 +26,7 @@
         <v-btn
           class="ml-2 success"
           small
-          @click="importComponent('Article'), getArticle(article.article_id), getComments(article.article_id)"
+          @click="changeID(article.article_id), importComponent('Article')"
         >Detail Page</v-btn>
       </v-card-actions>
     </v-card>
@@ -59,13 +59,8 @@ export default {
     hideTopics() {
       this.$store.dispatch("setTopic", false);
     },
-    getArticle(id) {
-      this.$store.dispatch("getArticle", id);
-    },
-    getComments(id) {
-      this.$store.dispatch("getComments", {
-        id
-      });
+    changeID(id){
+      this.$store.dispatch("setID", id)
     }
   }
 };

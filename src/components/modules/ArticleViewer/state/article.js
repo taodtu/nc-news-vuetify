@@ -1,4 +1,4 @@
-import { getArticle, updateArticle } from "../../components/api";
+import { getArticle, updateArticle } from "../../../api";
 
 const state = {
   article: {}
@@ -25,11 +25,9 @@ const actions = {
 
 const getters = {
   article: state => state.article,
-  id: state=>state.article.article_id
 };
 
 const articleModule = {
-  // namespaced: true,
   state,
   mutations,
   actions,

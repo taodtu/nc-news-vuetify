@@ -27,6 +27,7 @@ import { mapGetters } from "vuex";
 import CommentItem from "./CommentItem";
 import ToggleButton from "../../button/ToggleButton";
 import { ARTICLE_SORT_CHART } from "../../constant";
+import commentState from "./state/comments";
 
 export default {
   name: "CommentList",
@@ -51,6 +52,9 @@ export default {
     },
     order() {
       this.callStore();
+    },
+    id() {
+      this.callStore();
     }
   },
   methods: {
@@ -67,7 +71,10 @@ export default {
         : (this[name] = value);
     }
   },
-  
+  created() {
+    this.$store.registerModule("comments", commentState);
+    this.callStore();
+  }
 };
 </script>
 

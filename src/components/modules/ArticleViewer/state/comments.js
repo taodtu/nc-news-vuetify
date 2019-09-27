@@ -3,7 +3,7 @@ import {
   updateComment,
   addComment,
   deleteComment
-} from "../../components/api";
+} from "../../../api";
 
 const state = {
   comments: []

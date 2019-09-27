@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import articles from "./articles/index";
-import article from "./article/index";
-import comments from "./comments"
 import { getTopics } from "../components/api";
 
 Vue.use(Vuex);
@@ -13,7 +11,8 @@ const state = {
   showTopic: false,
   topic:"",
   topics: [],
-  user: "jessjelly"
+  user: "jessjelly",
+  id: undefined,
 };
 
 const mutations = {
@@ -31,6 +30,9 @@ const mutations = {
   },
   CHANGE_TOPIC(state, payload){
     state.topic=payload
+  },
+  SET_ID(state, payload){
+    state.id=payload
   }
 };
 
@@ -54,6 +56,9 @@ const actions = {
   },
   changeTopic({commit}, payload){
     commit("CHANGE_TOPIC", payload)
+  },
+  setID({commit}, payload){
+    commit("SET_ID", payload)
   }
 };
 
@@ -71,14 +76,13 @@ const getters = {
       return { ...topic, icon };
     }),
     user: state=>state.user,
-    topic: state=>state.topic
+    topic: state=>state.topic,
+    id: state=> state.id
 };
 
 export default new Vuex.Store({
   modules: {
     articles,
-    article,
-    comments
   },
   state,
   mutations,
