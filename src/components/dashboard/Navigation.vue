@@ -1,7 +1,6 @@
 <template>
   <v-navigation-drawer
     class="drawer secondary"
-    :mini-variant="miniVariant"
     disable-resize-watcher
     permanent
     app
@@ -13,8 +12,8 @@
   >
     <v-layout column fill-height>
       <v-list class="transparent pr-0 px-0 d-flex-row">
-        <v-list-item name="show-hide" class="my-0 py-0">
-          <v-switch class="my-0 py-0" v-model="miniVariant" color="yellow lighten-4" />
+        <v-list-item class="d-flex justify-center my-2">
+          <v-icon color="grey lighten-5" v-html="'fas fa-map-marked-alt' " large/>
         </v-list-item>
 
         <v-list-item
@@ -155,11 +154,6 @@ export default {
   name: "Navigation",
   components: {
     UserBar
-  },
-  data() {
-    return {
-      miniVariant: false
-    };
   },
   computed: {
     ...mapGetters(["currentComponentRendered", "showTopic", "topics", "topic"]),
