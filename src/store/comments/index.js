@@ -2,8 +2,14 @@ import {
   getCommentsByArticle,
   updateComment,
   addComment,
-  deleteComment
+  deleteComment,
+  getCommentsByUser
 } from "../../components/api";
+
+const getComments = {
+  Article: getCommentsByArticle,
+  Author: getCommentsByUser
+};
 
 const state = {
   comments: []
@@ -24,8 +30,8 @@ const mutations = {
 };
 
 const actions = {
-  getComments({ commit }, { id, sort_by, order}) {
-    getCommentsByArticle(id, sort_by, order)
+  getComments({ commit }, { id, sort_by, order, belongTo }) {
+    getComments[belongTo](id, sort_by, order)
       .then(comments => commit("GET_COMMENTS", comments))
       .catch(error => error);
   },
@@ -53,10 +59,11 @@ const getters = {
   comments: state => state.comments
 };
 
-export default {
+const commentsModule = {
   state,
   mutations,
   actions,
   getters
 };
 
+export default commentsModule;

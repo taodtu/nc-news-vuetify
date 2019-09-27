@@ -45,7 +45,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["comments", "id"])
+    ...mapGetters(["comments"])
   },
   watch: {
     sort_by() {
@@ -63,7 +63,8 @@ export default {
       this.$store.dispatch("getComments", {
         id: this.id,
         sort_by: this.sort_by,
-        order: this.order
+        order: this.order,
+        belongTo: this.belongTo
       });
     },
     handleEvent({ name, value }) {
@@ -74,7 +75,8 @@ export default {
   },
   created() {
     this.callStore();
-  }
+  },
+  props: ["belongTo", "id"]
 };
 </script>
 

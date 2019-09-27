@@ -27,7 +27,7 @@
         <Vote :votes="article.votes" :id="article.article_id" v-on:updateVote="onUpdateVote" />
       </v-card>
       <AddComment :id="id" />
-      <CommentList />
+      <CommentList belongTo="Article" :id="id" />
     </v-container>
   </div>
 </template>
