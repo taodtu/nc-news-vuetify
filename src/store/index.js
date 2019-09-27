@@ -11,6 +11,7 @@ const state = {
   //this protery will be the component imported object, not the component name
   currentComponentRendered: {},
   showTopic: false,
+  topic:"",
   topics: [],
   user: "jessjelly"
 };
@@ -27,6 +28,9 @@ const mutations = {
   },
   UPDATE_USER(state, payload) {
     state.user = payload;
+  },
+  CHANGE_TOPIC(state, payload){
+    state.topic=payload
   }
 };
 
@@ -47,6 +51,9 @@ const actions = {
   },
   getTopics({ commit }) {
     return getTopics().then(topics => commit("GET_TOPICS", topics));
+  },
+  changeTopic({commit}, payload){
+    commit("CHANGE_TOPIC", payload)
   }
 };
 
@@ -63,7 +70,8 @@ const getters = {
           : "fas fa-utensils";
       return { ...topic, icon };
     }),
-    user: state=>state.user
+    user: state=>state.user,
+    topic: state=>state.topic
 };
 
 export default new Vuex.Store({
