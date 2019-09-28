@@ -81,6 +81,11 @@ export default {
   created() {
     this.$store.registerModule("article", articleState);
     this.callStore();
+  },
+  watch: {
+    id() {
+      this.callStore();
+    }
   }
 };
 </script>
