@@ -6,7 +6,7 @@
       >Select current user</v-toolbar-title>
     </v-toolbar>
     <v-container>
-      <v-layout row>
+      <v-layout row v-if="!loading">
         <v-flex xs12 sm6 md4 v-for="author in authors" :key="author.username">
           <v-card
             class="ma-3 d-flex justify-center align-center"
@@ -26,6 +26,13 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-progress-linear
+        v-if="loading"
+        color="deep-purple accent-4"
+        indeterminate
+        rounded
+        height="6"
+      ></v-progress-linear>
     </v-container>
   </div>
 </template>
@@ -36,12 +43,18 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "UserViewer",
+  data() {
+    return {
+      loading: false
+    };
+  },
   computed: {
     ...mapGetters(["user", "authors"])
   },
-  created() {
+  async created() {
     this.$store.registerModule("UserViewer", state);
-    this.$store.dispatch("getAuthors", [
+    this.loading = true;
+    await this.$store.dispatch("getAuthors", [
       "jessjelly",
       "tickle122",
       "grumpy19",
@@ -49,6 +62,7 @@ export default {
       "cooljmessy",
       "weegembump"
     ]);
+    this.loading = false;
   },
   methods: {
     setUser(name) {
@@ -56,7 +70,7 @@ export default {
     },
     importComponent(name) {
       this.$store.dispatch("importComponent", name);
-    },
+    }
   }
 };
 </script>
