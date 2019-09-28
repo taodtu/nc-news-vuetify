@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="d-flex justify-start align-center mx-3">
+    <v-progress-linear v-if="loading" color="deep-purple accent-4" indeterminate rounded height="6"></v-progress-linear>
+    <div class="d-flex justify-start align-center mx-3" v-if="!loading">
       <v-select
         class="ml-4 mt-3 mb-0 pb-0 dense select"
         hide-details
@@ -16,23 +17,20 @@
     <v-container no-gutters class="mt-0 pt-0">
       <v-layout row class="mt-0 pt-0">
         <v-flex xs12 md6 v-for="article in articles.articles" :key="article.article_id">
-          <ArticleItem
-            :article="article"
-            :showAuthorLink="showAuthorLink"
-          />
+          <ArticleItem :article="article" :showAuthorLink="showAuthorLink" />
         </v-flex>
       </v-layout>
+      <div class="d-flex justify-center mt-4">
+        <Page :pageTotal="pageTotal" :p="p" @pageClicked="handleEvent" class="mx-3" />
+        <v-select
+          class="ml-2 mt-0 pt-0 select"
+          chips
+          label="Items per page"
+          v-model="limit"
+          :items="list"
+        />
+      </div>
     </v-container>
-    <div class="d-flex justify-center mt-2">
-      <Page :pageTotal="pageTotal" :p="p" @pageClicked="handleEvent" class="mx-3" />
-      <v-select
-        class="ml-2 mt-0 pt-0 select"
-        chips
-        label="Items per page"
-        v-model="limit"
-        :items="list"
-      />
-    </div>
   </div>
 </template>
 
@@ -62,7 +60,7 @@ export default {
     Page,
     ToggleButton
   },
-  props: [ "author", "showAuthorLink"],
+  props: ["author", "showAuthorLink"],
   created() {
     this.callStore();
   },
@@ -73,7 +71,7 @@ export default {
     },
     list() {
       let list = [];
-      for (let i = 2; i <= 12; i+=2) {
+      for (let i = 2; i <= 12; i += 2) {
         list.push(i);
       }
       return list;
