@@ -14,7 +14,8 @@ const state = {
   topics: [],
   user: "jessjelly",
   id: undefined,
-  drawer: true
+  drawer: true,
+  loading: false
 };
 
 const mutations = {
@@ -38,6 +39,9 @@ const mutations = {
   },
   SET_DRAWER(state, payload) {
     state.drawer = payload;
+  },
+  SET_LOADING(state, payload) {
+    state.loading = payload;
   }
 };
 
@@ -57,7 +61,14 @@ const actions = {
     commit("SET_TOPIC", payload);
   },
   getTopics({ commit }) {
-    return getTopics().then(topics => commit("GET_TOPICS", topics));
+    commit("SET_LOADING", true);
+    return getTopics().then(topics => {
+      commit("GET_TOPICS", topics);
+      commit("SET_LOADING", false).catch(error => {
+        commit("SET_LOADING", false);
+        console.log(error);
+      });
+    });
   },
   changeTopic({ commit }, payload) {
     commit("CHANGE_TOPIC", payload);
@@ -86,7 +97,8 @@ const getters = {
   user: state => state.user,
   topic: state => state.topic,
   id: state => state.id,
-  drawer: state => state.drawer
+  drawer: state => state.drawer,
+  loading : state => state.loading
 };
 
 export default new Vuex.Store({

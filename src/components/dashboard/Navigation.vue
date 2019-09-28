@@ -104,7 +104,7 @@
           </v-row>
         </v-list-item>
 
-        <div v-if="showTopic">
+        <div v-if="showTopic && !loading">
           <v-list-item
             v-for="topicObj in topics"
             :key="topicObj.slug"
@@ -140,6 +140,10 @@
         </div>
         <v-divider></v-divider>
 
+        <v-list-item class="mx-0 px-0" v-if="showTopic && loading">
+          <v-progress-circular indeterminate color="purple" />
+        </v-list-item>
+
         <v-list-item
           class="text-xs-middle mx-0 px-0"
           dark
@@ -147,9 +151,9 @@
           v-if="'ArticleViewer' === currentModuleName"
           :style="[ {'background': '#e6b400'}]"
         >
-              <v-list-item-content class="ml-4">
-                <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Article Page'" />
-              </v-list-item-content>
+          <v-list-item-content class="ml-4">
+            <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'Article Page'" />
+          </v-list-item-content>
         </v-list-item>
 
         <v-list-item
@@ -159,9 +163,9 @@
           v-if="'UserPageViewer' === currentModuleName"
           :style="[ {'background': '#e6b400'}]"
         >
-              <v-list-item-content class="ml-4">
-                <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'User Page'" />
-              </v-list-item-content>
+          <v-list-item-content class="ml-4">
+            <v-list-item-title class="white--text text--lighten-5 body-2" v-text="'User Page'" />
+          </v-list-item-content>
         </v-list-item>
 
         <v-list-item class="mt-8">
@@ -182,7 +186,14 @@ export default {
     UserBar
   },
   computed: {
-    ...mapGetters(["currentComponentRendered", "showTopic", "topics", "topic", "drawer"]),
+    ...mapGetters([
+      "currentComponentRendered",
+      "showTopic",
+      "topics",
+      "topic",
+      "drawer",
+      "loading"
+    ]),
     currentModuleName() {
       return this.currentComponentRendered.name;
     }
