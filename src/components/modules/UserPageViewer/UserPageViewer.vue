@@ -29,7 +29,7 @@ export default {
     ...mapGetters(["user"])
   },
   created() {
-    this.$store.dispatch("changeTopic", "");
+    this.$store.dispatch("changeTopic", undefined);
   }
 };
 </script>

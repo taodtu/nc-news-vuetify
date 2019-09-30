@@ -3,11 +3,9 @@
     <Header :title="title" />
     <Navigation />
     <v-content>
-      <keep-alive>
         <component
-          :is="currentComponentRendered"
+          :is="currentComponentRendered" 
         />
-      </keep-alive>
     </v-content>
     <Footer />
   </div>
