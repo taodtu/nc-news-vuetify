@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import { getTopics } from "../components/api";
 import articles from "./articles";
 import comments from "./comments";
-
 Vue.use(Vuex);
 
 const state = {
